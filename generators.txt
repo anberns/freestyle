@@ -1,0 +1,7 @@
+rails g resource Team name:string hq:string --no-test-framework
+
+rails g resource User name:string password_digest:string email:string --no-test-framework
+
+rails g resource Event name:string qualifying_time:string --no-test-framework 
+
+rails g migration create_user_events user_id:integer event_id:integer --no-test-framework
