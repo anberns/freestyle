@@ -20,14 +20,17 @@ function showEvents(e) {
     success: (response) => {
       let contentDiv = document.getElementById('main_content')
       contentDiv.innerHTML = "";
-      let newUl = document.createElement('ul');
-      newUl.id = "events_list"
-      contentDiv.appendChild(newUl)
+      let newDiv = document.createElement('div');
+      newDiv.id = "events_list"
+      contentDiv.appendChild(newDiv)
       for (let event of response.data) {
         let template = Handlebars.compile(document.getElementById('events-index-template').innerHTML)
-        let newLi = template(event)
-        newLi.id = event.id;
-        newUl.innerHTML += newLi
+        let eventObj = {
+          id: event.id,
+          name: event.attributes.name
+        }
+        let newEvent = template(eventObj)
+        newDiv.innerHTML += newEvent
       }
     }
   });

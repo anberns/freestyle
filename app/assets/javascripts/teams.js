@@ -19,17 +19,21 @@ function showTeams(e) {
     success: (response) => {
       let contentDiv = document.getElementById('main_content')
       contentDiv.innerHTML = "";
-      let newUl = document.createElement('ul');
-      newUl.id = "teams_list"
-      contentDiv.appendChild(newUl)
+      let newDiv = document.createElement('div');
+      newDiv.id = "teams_list"
+      contentDiv.appendChild(newDiv)
       for (let team of response.data) {
-        console.log(team)
-        let newLi = document.createElement('li');
-        newLi.id = `team-${team.id}`;
-        newLi.innerHTML = team.attributes.name;
-        newUl.appendChild(newLi)
+        let template = Handlebars.compile(document.getElementById('teams-index-template').innerHTML)
+        let teamObj = {
+          id: team.id,
+          name: team.attributes.name
+        }
+        let newTeam = template(teamObj)
+        newDiv.innerHTML += newTeam
       }
     }
   });
 
 }
+
+f

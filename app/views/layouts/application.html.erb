@@ -36,15 +36,13 @@
     <%= yield %>
   </div>
 
-  <!-- handlebars templates -->
+    <!-- handlebars templates -->
     <script id="events-index-template" type="text/x-handlebars-template">
-      <h1>Events</h1><br>
-      
-        
-      
-      
-      
-      
+      <h5 id="event-{{ id }}">{{ name }}</h5><br>
+    </script>
+
+    <script id="teams-index-template" type="text/x-handlebars-template">
+      <h5 id="team-{{ id }}">{{ name }}</h5><br>
     </script>
   </body>
 </html>
