@@ -62,13 +62,14 @@
     <script id="event-edit-template" type="text/x-handlebars-template"> 
       <form> 
         Name: 
-        <input type="text" name="event-name" value="{{ attributes.name }}"><br>
+        <br><input type="text" id="edit-event-name" value="{{ attributes.name }}"><br><br>
         Distance: 
-        <input type="text" name="event-distance" value="{{ attributes.distance }}"><br> 
+        <br><input type="text" id="edit-event-distance" value="{{ attributes.distance }}"><br><br> 
         Stroke: 
-        <input type="text" name="event-stroke" value="{{ attributes.stroke}}"><br>
-        <input type="submit" value="Update">
+        <br><input type="text" id="edit-event-stroke" value="{{ attributes.stroke}}"><br><br>
+        <input type="submit" class="normal_button" value="Update" id="events/{{ id }}">
       </form>
+    </script>
 
     <script id="teams-index-template" type="text/x-handlebars-template">
       {{#each this}}

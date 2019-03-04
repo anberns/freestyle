@@ -10,4 +10,18 @@ class EventsController < ApplicationController
     render json: event
   end
 
+  def update
+    event = Event.find(params[:id])
+    event.update(event_params)
+    events = Event.all
+    render json: events
+  end
+
+  private
+
+  def event_params
+    params.permit(:id, :name, :distance, :stroke)
+  end
+
+
 end
