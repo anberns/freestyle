@@ -1,5 +1,7 @@
 {
   "name": "freestyle",
   "private": true,
-  "dependencies": {}
+  "dependencies": {
+    "handlebars": "^4.1.0"
+  }
 }
