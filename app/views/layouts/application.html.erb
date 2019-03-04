@@ -40,7 +40,7 @@
     <script id="events-index-template" type="text/x-handlebars-template">
       {{#each this}}
         <div class="event_card">
-        <p style="font-size: 1.3em" id="event-{{ id }}"><a href="#" id="event-link-{{ id }}">{{ attributes.name }}</a></p>
+        <p style="font-size: 1.3em" id="event-{{ id }}">{{ attributes.name }}</p>
         {{#if_eq attributes.stroke "freestyle"}}
           <img src="https://i.imgur.com/vKE57Vm.jpg">
         {{/if_eq}}
@@ -53,12 +53,11 @@
         {{#if_eq attributes.stroke "butterfly"}}
           <img src="https://i.imgur.com/CKgE6Le.jpg">
         {{/if_eq}}
+        <button class="edit_button" id="event-edit-link-{{ id }}">Edit</>
+        <button class="delete_button" id="event-delete-link-{{ id }}">Delete</><br>
+        </div>
       {{/each}}
     </script>
-
-    
-        
-
 
     <script id="teams-index-template" type="text/x-handlebars-template">
       {{#each this}}
