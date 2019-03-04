@@ -15,4 +15,5 @@
 //= require activestorage
 //= require turbolinks
 //= require events
+//= require teams
 //= require_tree .

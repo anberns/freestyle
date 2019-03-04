@@ -1,11 +1,17 @@
-function loadTeamsLink() {
-  let eventsLink = document.getElementById('events_link');
+document.addEventListener('DOMContentLoaded', attachTeamsListeners); 
 
-  eventsLink.addEventListener("click", (e) => { showEvents(e) })
+function attachTeamsListeners() {
+  loadTeamsLink();
+}
+
+function loadTeamsLink() {
+  let teamsLink = document.getElementById('teams_link');
+
+  teamsLink.addEventListener("click", (e) => { showTeams(e) })
 
 }
 
-function showEvents(e) {
+function showTeams(e) {
   e.preventDefault();
   $.ajax({
     type: 'GET',
@@ -17,6 +23,7 @@ function showEvents(e) {
       newUl.id = "teams_list"
       contentDiv.appendChild(newUl)
       for (let team of response.data) {
+        console.log(team)
         let newLi = document.createElement('li');
         newLi.id = `team-${team.id}`;
         newLi.innerHTML = team.attributes.name;

@@ -1,3 +1,9 @@
+document.addEventListener('DOMContentLoaded', attachEventsListeners); 
+
+function attachEventsListeners() {
+  loadEventsLink();
+}
+
 function loadEventsLink() {
   let eventsLink = document.getElementById('events_link');
 
@@ -18,7 +24,6 @@ function showEvents(e) {
       newUl.id = "events_list"
       contentDiv.appendChild(newUl)
       for (let event of response.data) {
-        console.log(event)
         let newLi = document.createElement('li');
         newLi.id = event.id;
         newLi.innerHTML = event.attributes.name;
