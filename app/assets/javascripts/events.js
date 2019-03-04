@@ -4,7 +4,6 @@ document.addEventListener('DOMContentLoaded', attachEventsListeners);
 
 function attachEventsListeners() {
   loadEventsLink();
-  loadEventEditLinks();
 }
 
 function loadEventsLink() {
@@ -14,13 +13,13 @@ function loadEventsLink() {
 
 function loadEventEditLinks() {
   let editButtons = document.getElementsByClassName("edit_button");
-  for (let button of editButtons) {
-    button.addEventListener("click", (e) => { editEvent(e) })
+  for (let b of editButtons) {
+    b.addEventListener("click", (e) => { editEvent(e) });
   }
 }
 
 function editEvent(e) {
-  e.preventDefault();
+  //e.preventDefault();
   $.ajax({
     type: 'GET',
     url: e.target.id,
@@ -58,6 +57,7 @@ function showEvents(e) {
       let template = Handlebars.compile(document.getElementById('events-index-template').innerHTML); 
       let events = template(response.data)
       newDiv.innerHTML += events
+      loadEventEditLinks();
     }
   });
 

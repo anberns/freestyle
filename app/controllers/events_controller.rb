@@ -5,6 +5,9 @@ class EventsController < ApplicationController
     render json: events
   end
 
-  
+  def edit
+    event = Event.find(params:id)
+    render json: event
+  end
 
 end
