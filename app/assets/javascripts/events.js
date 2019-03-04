@@ -19,7 +19,6 @@ function loadEventEditLinks() {
 }
 
 function editEvent(e) {
-  //e.preventDefault();
   $.ajax({
     type: 'GET',
     url: e.target.id,
