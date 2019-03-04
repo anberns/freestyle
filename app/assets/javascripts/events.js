@@ -24,9 +24,9 @@ function showEvents(e) {
       newUl.id = "events_list"
       contentDiv.appendChild(newUl)
       for (let event of response.data) {
-        let newLi = document.createElement('li');
+        let template = Handlebars.compile(document.getElementById('events-index-template').innerHTML)
+        let newLi = template(event)
         newLi.id = event.id;
-        newLi.innerHTML = event.attributes.name;
         newUl.appendChild(newLi)
       }
     }
