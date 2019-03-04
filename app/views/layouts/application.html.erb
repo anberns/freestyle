@@ -39,9 +39,26 @@
     <!-- handlebars templates -->
     <script id="events-index-template" type="text/x-handlebars-template">
       {{#each this}}
-        <h5 id="event-{{ id }}">{{ attributes.name }}</h5><br>
+        <div class="event_card">
+        <p style="font-size: 1.3em" id="event-{{ id }}"><a href="#" id="event-link-{{ id }}">{{ attributes.name }}</a></p>
+        {{#if_eq attributes.stroke "freestyle"}}
+          <img src="https://i.imgur.com/vKE57Vm.jpg">
+        {{/if_eq}}
+        {{#if_eq attributes.stroke "breaststroke"}}
+          <img src="https://i.imgur.com/JR51SU3.jpg">
+        {{/if_eq}}
+        {{#if_eq attributes.stroke  "backstroke"}}
+          <img src="https://i.imgur.com/VBbdzdP.jpg">
+        {{/if_eq}}
+        {{#if_eq attributes.stroke "butterfly"}}
+          <img src="https://i.imgur.com/CKgE6Le.jpg">
+        {{/if_eq}}
       {{/each}}
     </script>
+
+    
+        
+
 
     <script id="teams-index-template" type="text/x-handlebars-template">
       {{#each this}}

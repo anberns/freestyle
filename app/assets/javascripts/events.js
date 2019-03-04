@@ -1,5 +1,7 @@
 document.addEventListener('DOMContentLoaded', attachEventsListeners); 
 
+
+
 function attachEventsListeners() {
   loadEventsLink();
 }
@@ -18,6 +20,13 @@ function showEvents(e) {
     type: 'GET',
     url: `/events`,
     success: (response) => {
+      Handlebars.registerHelper('if_eq', function(a, b, opts) {
+        if (a == b) {
+            return opts.fn(this);
+        } else {
+            return opts.inverse(this);
+        }
+      });
       let contentDiv = document.getElementById('main_content')
       contentDiv.innerHTML = "";
       let newDiv = document.createElement('div');
