@@ -22,18 +22,10 @@ function showTeams(e) {
       let newDiv = document.createElement('div');
       newDiv.id = "teams_list"
       contentDiv.appendChild(newDiv)
-      for (let team of response.data) {
-        let template = Handlebars.compile(document.getElementById('teams-index-template').innerHTML)
-        let teamObj = {
-          id: team.id,
-          name: team.attributes.name
-        }
-        let newTeam = template(teamObj)
-        newDiv.innerHTML += newTeam
+      let template = Handlebars.compile(document.getElementById('teams-index-template').innerHTML)
+      let teams = template(response.data)
+      newDiv.innerHTML += teams
       }
-    }
-  });
+    });
 
 }
-
-f
