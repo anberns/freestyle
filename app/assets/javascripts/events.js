@@ -3,29 +3,26 @@ document.addEventListener('DOMContentLoaded', attachEventsListeners);
 
 
 function attachEventsListeners() {
-  loadEventsLink();
+  loadEventsNavLink();
 }
 
-function loadEventsLink() {
+function loadEventsNavLink() {
   let eventsLink = document.getElementById('events_link');
   eventsLink.addEventListener("click", (e) => { showEvents(e) })
 }
 
-function loadEventEditLinks() {
+function loadEventCardLinks() {
   let editButtons = document.getElementsByClassName("edit_button");
   for (let b of editButtons) {
     b.addEventListener("click", (e) => { editEvent(e) });
   }
+  let deleteButton = document.getElementsByClassName("delete_button")[0]
+  deleteButton.addEventListener("click", (e) => { deleteEvent(e) })
 }
 
 function loadEventUpdateButton() {
   let updateButton = document.getElementsByClassName("normal_button")[0]
   updateButton.addEventListener("click", (e) => { updateEvent(e) })
-}
-
-function loadEventDeleteLinks() {
-  let deleteButton = document.getElementsByClassName("delete_button")[0]
-  deleteButton.addEventListener("click", (e) => { deleteEvent(e) })
 }
 
 function deleteEvent(e) {
@@ -49,8 +46,7 @@ function deleteEvent(e) {
       let template = Handlebars.compile(document.getElementById('events-index-template').innerHTML); 
       let events = template(response.data)
       newDiv.innerHTML += events
-      loadEventEditLinks(); 
-      loadEventDeleteLinks();
+      loadEventCardLinks(); 
     }
   })
 }
@@ -85,8 +81,7 @@ function updateEvent(e) {
       let template = Handlebars.compile(document.getElementById('events-index-template').innerHTML); 
       let events = template(response.data)
       newDiv.innerHTML += events
-      loadEventEditLinks(); 
-      loadEventDeleteLinks();
+      loadEventCardLinks(); 
     }
   })
 }
@@ -130,8 +125,7 @@ function showEvents(e) {
       let template = Handlebars.compile(document.getElementById('events-index-template').innerHTML); 
       let events = template(response.data)
       newDiv.innerHTML += events
-      loadEventEditLinks();
-      loadEventDeleteLinks();
+      loadEventCardLinks();
     }
   });
 
