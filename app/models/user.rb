@@ -5,8 +5,8 @@ class User < ApplicationRecord
   validates :email, presence: true, uniqueness: true
 
   belongs_to :team
-  has_many :swimmer_events
-  has_many :events, through: :swimmer_events, dependent: :destroy
+  has_many :user_events
+  has_many :events, through: :user_events, dependent: :destroy
   # can remove
   accepts_nested_attributes_for :events
 

@@ -23,7 +23,37 @@ function loadEventUpdateButton() {
   updateButton.addEventListener("click", (e) => { updateEvent(e) })
 }
 
-//data: { state: currentState },
+function loadEventDeleteLinks() {
+  let deleteButton = document.getElementsByClassName("delete_button")[0]
+  deleteButton.addEventListener("click", (e) => { deleteEvent(e) })
+}
+
+function deleteEvent(e) {
+  e.preventDefault();
+  $.ajax({
+    type: 'DELETE',
+    url: `e${e.target.id}`,
+    success: (response) => {
+      Handlebars.registerHelper('if_eq', function(a, b, opts) {
+        if (a == b) {
+            return opts.fn(this);
+        } else {
+            return opts.inverse(this);
+        }
+      });
+      let contentDiv = document.getElementById('main_content')
+      contentDiv.innerHTML = "";
+      let newDiv = document.createElement('div');
+      newDiv.id = "events_list"
+      contentDiv.appendChild(newDiv)
+      let template = Handlebars.compile(document.getElementById('events-index-template').innerHTML); 
+      let events = template(response.data)
+      newDiv.innerHTML += events
+      loadEventEditLinks(); 
+      loadEventDeleteLinks();
+    }
+  })
+}
 
 function updateEvent(e) {
   let name = document.getElementById("edit-event-name").value
@@ -56,6 +86,7 @@ function updateEvent(e) {
       let events = template(response.data)
       newDiv.innerHTML += events
       loadEventEditLinks(); 
+      loadEventDeleteLinks();
     }
   })
 }
@@ -100,6 +131,7 @@ function showEvents(e) {
       let events = template(response.data)
       newDiv.innerHTML += events
       loadEventEditLinks();
+      loadEventDeleteLinks();
     }
   });
 
