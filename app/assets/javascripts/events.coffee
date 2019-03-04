@@ -20,12 +20,13 @@ function showEvents() {
       let contentDiv = document.getElementById('main_content')
       contentDiv.innerHTML = "";
       let newUl = document.createElement('ul');
+      newUl.id = "events_list"
+      contentDiv.appendChild(newUl)
       for (let event of response.data) {
         let newLi = document.createElement('li');
-        gameButton.id = gameObject.id;
-        gameButton.innerHTML = gameObject.id;
-        gameButton.addEventListener("click", () => { loadGame(gameObject) })
-        gamesDiv.appendChild(gameButton)
+        newLi.id = event.id;
+        newLi.innerHTML = event.name;
+        newUl.appendChild(newLi)
       }
     }
   });
