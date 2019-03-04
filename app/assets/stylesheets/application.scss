@@ -13,6 +13,9 @@
  *= require_tree .
  *= require_self
  */
+
+ @import 'bootstrap';
+
  .content {
   width: 76%;
   height: 3000px;
@@ -42,4 +45,59 @@ img {
 
 .landing {
   width: 100%;
+}
+
+.form_heading {
+  font-size: 1.5em;
+}
+
+.event_card {
+  width: 200px;
+  padding: 10px;
+  display: inline-block;
+  background-color: white;
+  margin-bottom: 25px;
+  margin-right: 25px;
+  box-shadow: 5px 5px 10px 2px darkslategray;
+
+}
+
+.team_card {
+ width: 400px;
+ height: 320px;
+ padding: 10px;
+ display: inline-block;
+ background-color: white;
+ margin-bottom: 25px;
+ margin-right: 25px;
+ box-shadow: 5px 5px 10px 2px darkslategray;
+}
+
+.team_card_full {
+ width: 600px;
+ height: 390px;
+ padding: 10px;
+ display: inline-block;
+ background-color: white;
+ margin-bottom: 25px;
+ margin-right: 25px;
+ box-shadow: 5px 5px 10px 2px darkslategray;
+}
+
+.edit_button {
+ background-color: rgba(92, 230, 92, 0.8);
+ border: none;
+ margin-top: 5px;
+ margin-bottom: 5px;
+}
+.delete_button {
+  background-color: rgba(236, 133, 133, 0.8);
+  border: none;
+}
+
+.normal_button {
+ background-color: rgba(23, 81, 241, 0.8);
+ border: none;
+ color: white;
+ margin-top: 10px;
 }
