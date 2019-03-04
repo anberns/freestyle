@@ -27,7 +27,7 @@ function showEvents(e) {
         let template = Handlebars.compile(document.getElementById('events-index-template').innerHTML)
         let newLi = template(event)
         newLi.id = event.id;
-        newUl.appendChild(newLi)
+        newUl.innerHTML += newLi
       }
     }
   });
