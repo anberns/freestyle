@@ -18,11 +18,17 @@ function showEvents(e) {
     type: 'GET',
     url: `/events`,
     success: (response) => {
+      console.log(response.data)
       let contentDiv = document.getElementById('main_content')
       contentDiv.innerHTML = "";
       let newDiv = document.createElement('div');
       newDiv.id = "events_list"
       contentDiv.appendChild(newDiv)
+      let template = Handlebars.compile(document.getElementById('events-index-template').innerHTML); 
+      let events = template(response.data)
+      newDiv.innerHTML += events
+      /*
+
       for (let event of response.data) {
         let template = Handlebars.compile(document.getElementById('events-index-template').innerHTML)
         let eventObj = {
@@ -32,6 +38,7 @@ function showEvents(e) {
         let newEvent = template(eventObj)
         newDiv.innerHTML += newEvent
       }
+      */
     }
   });
 

@@ -38,7 +38,9 @@
 
     <!-- handlebars templates -->
     <script id="events-index-template" type="text/x-handlebars-template">
-      <h5 id="event-{{ id }}">{{ name }}</h5><br>
+      {{#each this}}
+        <h5 id="event-{{ id }}">{{ attributes.name }}</h5><br>
+      {{/each}}
     </script>
 
     <script id="teams-index-template" type="text/x-handlebars-template">
