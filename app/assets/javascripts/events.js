@@ -1,7 +1,5 @@
 document.addEventListener('DOMContentLoaded', attachEventsListeners); 
 
-
-
 function attachEventsListeners() {
   loadEventsNavLink();
 }
@@ -25,24 +23,33 @@ function loadEventUpdateButton() {
   updateButton.addEventListener("click", (e) => { updateEvent(e) })
 }
 
+function registerIfEq() {
+  Handlebars.registerHelper('if_eq', function(a, b, opts) {
+    if (a == b) {
+        return opts.fn(this);
+    } else {
+        return opts.inverse(this);
+    }
+  }); 
+}
+
+function createNewDiv(id) {
+  let contentDiv = document.getElementById('main_content')
+  contentDiv.innerHTML = "";
+  let newDiv = document.createElement('div');
+  newDiv.id = id; 
+  contentDiv.appendChild(newDiv)
+  return newDiv;
+}
+
 function deleteEvent(e) {
   e.preventDefault();
   $.ajax({
     type: 'DELETE',
     url: `e${e.target.id}`,
     success: (response) => {
-      Handlebars.registerHelper('if_eq', function(a, b, opts) {
-        if (a == b) {
-            return opts.fn(this);
-        } else {
-            return opts.inverse(this);
-        }
-      });
-      let contentDiv = document.getElementById('main_content')
-      contentDiv.innerHTML = "";
-      let newDiv = document.createElement('div');
-      newDiv.id = "events_list"
-      contentDiv.appendChild(newDiv)
+      registerIfEq();
+      let newDiv = createNewDiv("events_list");
       let template = Handlebars.compile(document.getElementById('events-index-template').innerHTML); 
       let events = template(response.data)
       newDiv.innerHTML += events
@@ -66,18 +73,8 @@ function updateEvent(e) {
     url: e.target.id,
     data: values,
     success: (response) => {
-      Handlebars.registerHelper('if_eq', function(a, b, opts) {
-        if (a == b) {
-            return opts.fn(this);
-        } else {
-            return opts.inverse(this);
-        }
-      });
-      let contentDiv = document.getElementById('main_content')
-      contentDiv.innerHTML = "";
-      let newDiv = document.createElement('div');
-      newDiv.id = "events_list"
-      contentDiv.appendChild(newDiv)
+      registerIfEq();
+      let newDiv = createNewDiv("events_list");
       let template = Handlebars.compile(document.getElementById('events-index-template').innerHTML); 
       let events = template(response.data)
       newDiv.innerHTML += events
@@ -91,11 +88,7 @@ function editEvent(e) {
     type: 'GET',
     url: e.target.id,
     success: (response) => {
-      let contentDiv = document.getElementById('main_content')
-      contentDiv.innerHTML = "";
-      let newDiv = document.createElement('div');
-      newDiv.id = "event_edit_form"
-      contentDiv.appendChild(newDiv)
+      let newDiv = createNewDiv("event_edit_form");
       let template = Handlebars.compile(document.getElementById('event-edit-template').innerHTML); 
       let event = template(response.data)
       newDiv.innerHTML += event
@@ -110,18 +103,8 @@ function showEvents(e) {
     type: 'GET',
     url: `/events`,
     success: (response) => {
-      Handlebars.registerHelper('if_eq', function(a, b, opts) {
-        if (a == b) {
-            return opts.fn(this);
-        } else {
-            return opts.inverse(this);
-        }
-      });
-      let contentDiv = document.getElementById('main_content')
-      contentDiv.innerHTML = "";
-      let newDiv = document.createElement('div');
-      newDiv.id = "events_list"
-      contentDiv.appendChild(newDiv)
+      registerIfEq();
+      let newDiv = createNewDiv("events_list");
       let template = Handlebars.compile(document.getElementById('events-index-template').innerHTML); 
       let events = template(response.data)
       newDiv.innerHTML += events
