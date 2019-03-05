@@ -9,6 +9,12 @@ class UsersController < ApplicationController
     render json: user
   end
 
+  def update
+    user = User.find(params[:id])
+    user.update(user_params)
+    render json: user 
+  end
+
   def index
     if params[:team_id]
       users = Team.find(params[:team_id]).users
@@ -18,4 +24,9 @@ class UsersController < ApplicationController
     render json: users
   end
 
+  private
+
+    def user_params
+      params.permit(:id, :name, :email, :password)
+    end
 end
