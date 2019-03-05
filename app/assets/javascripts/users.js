@@ -23,6 +23,35 @@ function loadTeamShowLinks() {
   //addButton.addEventListener("click", (e) => { addMember(e) }) 
 }
 
+function loadUserUpdateButton() {
+  let updateButton = document.getElementsByClassName('normal_button')[0];
+  updateButton.addEventListener("click", (e) => { sendUpdate(e) })
+}
+
+function sendUpdate(e) {
+  e.preventDefault();
+  let name = document.getElementById("updatedName").value
+  let email = document.getElementById("updatedEmail").value
+  let password = document.getElementById("updatedPassword").value
+  let values = {
+    name: name,
+    email: email,
+    password: password 
+  }
+  $.ajax({
+    type: 'PATCH',
+    url: e.target.id,
+    data: values,
+    success: (response) => {
+      let newDiv = createNewDiv("user_profile");
+      let template = Handlebars.compile(document.getElementById('profile-template').innerHTML); 
+      let user = template(response.data)
+      newDiv.innerHTML += user
+      loadUserLinkButtons();
+    }
+  });
+}
+
 function goToTeamPage(e) {
   e.preventDefault();
   $.ajax({
@@ -48,6 +77,7 @@ function updateProfile(e) {
       let template = Handlebars.compile(document.getElementById('update-user-template').innerHTML); 
       let user = template(response.data)
       newDiv.innerHTML += user 
+      loadUserUpdateButton();
     }
   });
 }

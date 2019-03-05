@@ -74,6 +74,18 @@
       <button class="normal_button" id="teams/{{ attributes.team.id }}">Team Page</button>
     </script>
 
+    <script id="update-user-template" type="text/x-handlebars-template"> 
+      <form> 
+        Name: 
+        <br><input type="text" id="updatedName" value="{{ attributes.name }}"><br><br>
+        Email: 
+        <br><input type="text" id="updatedEmail" value="{{ attributes.email }}"><br><br> 
+        Password: 
+        <br><input type="password" id="updatedPassword" value="{{ attributes.password }}"><br><br>
+        <input type="submit" class="normal_button" value="Update" id="users/{{ id }}">
+      </form>
+    </script>
+
    
     <script id="event-edit-template" type="text/x-handlebars-template"> 
       <form> 

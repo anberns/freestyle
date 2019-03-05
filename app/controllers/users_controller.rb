@@ -4,6 +4,11 @@ class UsersController < ApplicationController
     render json: user
   end
 
+  def edit
+    user = User.find(params[:id])
+    render json: user
+  end
+
   def index
     if params[:team_id]
       users = Team.find(params[:team_id]).users
