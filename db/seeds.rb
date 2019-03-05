@@ -43,3 +43,10 @@ events = Event.create([{ name: "50 freestyle", distance: "50", stroke: "freestyl
   { name: "1000 breaststroke", distance: "1000", stroke: "breaststroke"}
   
 ])
+
+user_events = UserEvent.create([
+  { user_id: "1", event_id: '1' },
+  { user_id: "1", event_id: '2' },
+  { user_id: "1", event_id: '3' },
+  { user_id: "1", event_id: '4' },
+])
