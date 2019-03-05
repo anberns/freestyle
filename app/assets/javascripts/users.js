@@ -9,10 +9,11 @@ function loadProfileNavLink() {
   profileLink.addEventListener("click", (e) => { showProfile(e) })
 }
 
-function loadTeamLinkButton() {
+function loadUserLinkButtons() {
   let teamButton = document.getElementsByClassName("normal_button")[0]
-  console.log(teamButton)
   teamButton.addEventListener("click", (e) => { goToTeamPage(e) })
+  let updateButton = document.getElementsByClassName("edit_button")[0]
+  updateButton.addEventListener("click", (e) => { updateProfile(e) })
 }
 
 function loadTeamShowLinks() {
@@ -37,6 +38,20 @@ function goToTeamPage(e) {
   });
 }
 
+function updateProfile(e) {
+  e.preventDefault();
+  $.ajax({
+    type: 'GET',
+    url: e.target.id, 
+    success: (response) => {
+      let newDiv = createNewDiv("update_user_page");
+      let template = Handlebars.compile(document.getElementById('update-user-template').innerHTML); 
+      let user = template(response.data)
+      newDiv.innerHTML += user 
+    }
+  });
+}
+
 function showProfile(e) {
   e.preventDefault();
   $.ajax({
@@ -47,7 +62,7 @@ function showProfile(e) {
       let template = Handlebars.compile(document.getElementById('profile-template').innerHTML); 
       let user = template(response.data)
       newDiv.innerHTML += user
-      loadTeamLinkButton();
+      loadUserLinkButtons();
     }
   });
 }
