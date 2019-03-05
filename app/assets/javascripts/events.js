@@ -46,11 +46,30 @@ function createNewDiv(id) {
 
 function addEvent(e) {
   e.preventDefault();
-  let formDiv = createNewDiv("event_form")
+  let addButton = document.getElementsByClassName("normal_button")[0];
+  addButton.parentNode.removeChild(addButton)
+  let formDiv = document.createElement('div')
   let contentDiv = document.getElementById('main_content') 
-  let template = Handlebars.compile(document.getElementById('new-event-template').innerHTML);
-  formDiv.innerHTML += template;
-  contentDiv.innerHTML += formDiv;
+  contentDiv.appendChild(formDiv);
+  let newForm = document.createElement('form');
+  formDiv.appendChild(newForm)
+  let newInput = document.createElement('input')
+  let newBr = document.createElement('br')
+  newInput.type = "text";
+  newInput.value = "Event Name"
+  newForm.appendChild(newInput);
+  newForm.appendChild(newBr)
+  newInput = document.createElement('input')
+  newInput.type = "text";
+  newInput.value = "Distance"
+  newForm.appendChild(newInput);
+  newBr = document.createElement('br')
+  newForm.appendChild(newBr)
+  newInput = document.createElement('input')
+  newInput.type = "text";
+  newInput.value = "Stroke"
+  newForm.appendChild(newInput);
+
 }
 
 function deleteEvent(e) {
