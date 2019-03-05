@@ -19,15 +19,14 @@ function loadTeamsLink() {
 }
 
 function loadTeamCardLinks() {
-  let images = document.getElementsByClassName("team-image");
-  for (let i of images) {
+  cards = document.getElementsByClassName("normal_button");
+  for (let i of cards) {
     i.addEventListener("click", (e) => { showTeam(e) });
   }
 }
 
-
 function showTeam(e) {
-e.preventDefault();
+  e.preventDefault();
   $.ajax({
     type: 'GET',
     url: e.target.id,
@@ -50,7 +49,7 @@ function showTeams(e) {
       let template = Handlebars.compile(document.getElementById('teams-index-template').innerHTML)
       let teams = template(response.data)
       newDiv.innerHTML += teams
-      }
-    });
-    loadTeamCardLinks();
+    }
+  });
+  loadTeamCardLinks();
 }

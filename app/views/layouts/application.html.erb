@@ -73,13 +73,21 @@
 
     <script id="teams-index-template" type="text/x-handlebars-template">
       {{#each this}}
-        <a href="#" class="team-image" id="teams/{{ id }}">
-          <div class="team_card" >
-            <h4 id="team-{{ id }}">{{ attributes.name }}</h4>
-            <img src="{{ attributes.image-url }}">
-          </div>
-        </a>
+        <div class="team_card" >
+          <h4 id="team-{{ id }}">{{ attributes.name }}</h4>
+          <img src="{{ attributes.image-url }}">
+          <button class="normal_button" id="teams/{{ id }}">Team Page</>
+        </div>
       {{/each}}
     </script>
+
+    <script id="team-show-template" type="text/x-handlebars-template"> 
+      <h1>{{ attributes.name }}</h1>
+      <h2>{{ attributes.hq }}</h2>
+      <div class="team_card_full">
+        <img src="{{ attributes.image_url }}">
+      </div>
   </body>
 </html>
+
+
