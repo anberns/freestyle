@@ -16,4 +16,5 @@
 //= require turbolinks
 //= require events
 //= require teams
+//= require users
 //= require_tree .
