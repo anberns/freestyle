@@ -65,7 +65,9 @@
     <script id="profile-template" type="text/x-handlebars-template"> 
       <h1>{{ attributes.name }}</h1>
       <h3>{{ attributes.team.name }}</h3>
-        <h5>{{ attributes.events }}</h5>
+      {{#each attributes.events}}
+      <p>{{ this.name }}</p>
+      {{/each}}
       <button class="normal_button" id="teams/{{ attributes.team.id }}">Team Page</button>
     </script>
 
