@@ -5,6 +5,12 @@ class EventsController < ApplicationController
     render json: events
   end
 
+  def create
+    event = Event.create(event_params)
+    events = Event.sort 
+    render json: events
+  end
+
   def edit
     event = Event.find(params[:id])
     render json: event

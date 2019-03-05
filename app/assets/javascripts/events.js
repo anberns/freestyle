@@ -57,18 +57,51 @@ function addEvent(e) {
   let newBr = document.createElement('br')
   newInput.type = "text";
   newInput.value = "Event Name"
+  newInput.id = "newName";
   newForm.appendChild(newInput);
   newForm.appendChild(newBr)
   newInput = document.createElement('input')
   newInput.type = "text";
   newInput.value = "Distance"
+  newInput.id = "newDistance";
   newForm.appendChild(newInput);
   newBr = document.createElement('br')
   newForm.appendChild(newBr)
   newInput = document.createElement('input')
   newInput.type = "text";
   newInput.value = "Stroke"
+  newInput.id = "newStroke";
   newForm.appendChild(newInput);
+  newBr = document.createElement('br')
+  newForm.appendChild(newBr)
+  let newButton = document.createElement('button')
+  newButton.textContent= "Add Event"
+  newButton.className="normal_button"
+  newForm.appendChild(newButton);
+  newButton.addEventListener("click", (e) => {
+    e.preventDefault();
+    let name = document.getElementById("newName").value
+    let distance = document.getElementById("newDistance").value
+    let stroke = document.getElementById("newStroke").value
+    let values = {
+      name: name,
+      distance: distance,
+      stroke: stroke
+    }
+    $.ajax({
+      type: 'post',
+      url: "events",
+      data: values,
+      success: (response) => {
+        registerIfEq();
+        let newDiv = createNewDiv("events_list");
+        let template = Handlebars.compile(document.getElementById('events-index-template').innerHTML); 
+        let events = template(response.data)
+        newDiv.innerHTML += events
+        loadEventCardLinks(); 
+      }
+    }) 
+  })
 
 }
 
