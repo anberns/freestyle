@@ -15,6 +15,13 @@ function loadTeamLinkButton() {
   teamButton.addEventListener("click", (e) => { goToTeamPage(e) })
 }
 
+function loadTeamShowLinks() {
+  let rosterButton = document.getElementsByClassName("normal_button")[0];
+  rosterButton.addEventListener("click", (e) => { showRoster(e) }) 
+  //let addButton = document.getElementsByClassName("normal_button")[1];
+  //addButton.addEventListener("click", (e) => { addMember(e) }) 
+}
+
 function goToTeamPage(e) {
   e.preventDefault();
   $.ajax({
@@ -25,6 +32,7 @@ function goToTeamPage(e) {
       let template = Handlebars.compile(document.getElementById('team-show-template').innerHTML); 
       let team = template(response.data)
       newDiv.innerHTML += team
+      loadTeamShowLinks();
     }
   });
 }
@@ -44,3 +52,16 @@ function showProfile(e) {
   });
 }
 
+function showRoster(e) {
+  e.preventDefault();
+  $.ajax({
+    type: 'GET',
+    url: e.target.id,
+    success: (response) => {
+      let newDiv = createNewDiv("users_list")
+      let template = Handlebars.compile(document.getElementById('users-index-template').innerHTML)
+      let users = template(response.data)
+      newDiv.innerHTML += users 
+    }
+  });
+}

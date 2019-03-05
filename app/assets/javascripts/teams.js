@@ -72,7 +72,6 @@ function showRoster(e) {
       let template = Handlebars.compile(document.getElementById('users-index-template').innerHTML)
       let users = template(response.data)
       newDiv.innerHTML += users 
-      loadTeamCardLinks();
     }
   });
 }
