@@ -25,6 +25,13 @@ function loadTeamCardLinks() {
   }
 }
 
+function loadTeamShowLinks() {
+  let rosterButton = document.getElementsByClassName("normal_button")[0];
+  rosterButton.addEventListener("click", (e) => { showRoster(e) }) 
+  //let addButton = document.getElementsByClassName("normal_button")[1];
+  //addButton.addEventListener("click", (e) => { addMember(e) }) 
+}
+
 function showTeam(e) {
   e.preventDefault();
   $.ajax({
@@ -35,6 +42,7 @@ function showTeam(e) {
       let template = Handlebars.compile(document.getElementById('team-show-template').innerHTML)
       let team = template(response.data)
       newDiv.innerHTML += team
+      loadTeamShowLinks();
       }
     });
 }
@@ -49,6 +57,21 @@ function showTeams(e) {
       let template = Handlebars.compile(document.getElementById('teams-index-template').innerHTML)
       let teams = template(response.data)
       newDiv.innerHTML += teams
+      loadTeamCardLinks();
+    }
+  });
+}
+
+function showRoster(e) {
+  e.preventDefault();
+  $.ajax({
+    type: 'GET',
+    url: e.target.id,
+    success: (response) => {
+      let newDiv = createNewDiv("users_list")
+      let template = Handlebars.compile(document.getElementById('users-index-template').innerHTML)
+      let users = template(response.data)
+      newDiv.innerHTML += users 
       loadTeamCardLinks();
     }
   });
