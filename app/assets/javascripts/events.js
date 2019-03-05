@@ -16,6 +16,8 @@ function loadEventCardLinks() {
   }
   let deleteButton = document.getElementsByClassName("delete_button")[0]
   deleteButton.addEventListener("click", (e) => { deleteEvent(e) })
+  let addButton = document.getElementsByClassName("normal_button")[0];
+  addButton.addEventListener("click", (e) => { addEvent(e) }) 
 }
 
 function loadEventUpdateButton() {
@@ -40,6 +42,15 @@ function createNewDiv(id) {
   newDiv.id = id; 
   contentDiv.appendChild(newDiv)
   return newDiv;
+}
+
+function addEvent(e) {
+  e.preventDefault();
+  let formDiv = createNewDiv("event_form")
+  let contentDiv = document.getElementById('main_content') 
+  let template = Handlebars.compile(document.getElementById('new-event-template').innerHTML);
+  formDiv.innerHTML += template;
+  contentDiv.innerHTML += formDiv;
 }
 
 function deleteEvent(e) {

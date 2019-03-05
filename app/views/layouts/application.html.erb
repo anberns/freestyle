@@ -60,11 +60,13 @@
         <button class="delete_button" id="vents/{{ id }}">Delete</><br>
         </div>
       {{/each}}
+      <br><button class="normal_button" id="events/new">Add Event</button>
     </script>
 
     <script id="profile-template" type="text/x-handlebars-template"> 
       <h1>{{ attributes.name }}</h1>
-      <h3>{{ attributes.team.name }}</h3>
+      <h3>{{ attributes.team.name }}</h3><br>
+      <h5>Events</h5>
       {{#each attributes.events}}
       <p>{{ this.name }}</p>
       {{/each}}
@@ -72,7 +74,7 @@
     </script>
 
     
-
+    
 
 
     <script id="event-edit-template" type="text/x-handlebars-template"> 
