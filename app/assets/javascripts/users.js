@@ -16,10 +16,11 @@ function showProfile(e) {
     url: `/users/1`, //update when sessions are implemented
     success: (response) => {
       registerIfEq();
-      let newDiv = createNewDiv("events_list");
-      let template = Handlebars.compile(document.getElementById('events-index-template').innerHTML); 
-      let events = template(response.data)
-      newDiv.innerHTML += events
+      let newDiv = createNewDiv("user_profile");
+      let template = Handlebars.compile(document.getElementById('profile-template').innerHTML); 
+      let user = template(response.data)
+      newDiv.innerHTML += user
       loadEventCardLinks();
     }
   });
+}
