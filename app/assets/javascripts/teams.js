@@ -49,7 +49,7 @@ function showTeams(e) {
       let template = Handlebars.compile(document.getElementById('teams-index-template').innerHTML)
       let teams = template(response.data)
       newDiv.innerHTML += teams
+      loadTeamCardLinks();
     }
   });
-  loadTeamCardLinks();
 }
