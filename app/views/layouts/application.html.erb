@@ -90,6 +90,13 @@
       {{/each}}
     </script>
 
+    <script id="users-index-template" type="text/x-handlebars-template">
+      {{#each this}}
+        <h4 id="team-{{ id }}">{{ attributes.name }}</h4>
+        <h2>{{ attributes.email }}</h2>
+      {{/each}}
+    </script>
+
     <script id="team-show-template" type="text/x-handlebars-template"> 
       <h1>{{ attributes.name }}</h1>
       <h2>{{ attributes.hq }}</h2>
