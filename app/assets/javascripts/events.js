@@ -14,8 +14,10 @@ function loadEventCardLinks() {
   for (let b of editButtons) {
     b.addEventListener("click", (e) => { editEvent(e) });
   }
-  let deleteButton = document.getElementsByClassName("delete_button")[0]
-  deleteButton.addEventListener("click", (e) => { deleteEvent(e) })
+  let deleteButtons = document.getElementsByClassName("delete_button")
+  for (let b of deleteButtons) {
+    b.addEventListener("click", (e) => { deleteEvent(e) });
+  }
   let addButton = document.getElementsByClassName("normal_button")[0];
   addButton.addEventListener("click", (e) => { addEvent(e) }) 
 }
