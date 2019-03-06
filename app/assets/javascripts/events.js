@@ -135,13 +135,19 @@ function deleteEvent(e) {
 }
 
 function updateEvent(e) {
-  let name = document.getElementById("edit-event-name").value
-  let distance = document.getElementById("edit-event-distance").value
-  let stroke = document.getElementById("edit-event-stroke").value
+  let newEvent = Event(
+    document.getElementById("edit-event-distance").value,
+    document.getElementById("edit-event-stroke").value 
+    // id
+  )
+  
+  //let name = document.getElementById("edit-event-name").value
+  //let distance = document.getElementById("edit-event-distance").value
+  //let stroke = document.getElementById("edit-event-stroke").value
   let values = {
-    name: name,
-    distance: distance,
-    stroke: stroke
+    name: newEvent.getName(),
+    distance: newEvent.distance,
+    stroke: newEvent.stroke
   }
   e.preventDefault();
   $.ajax({
