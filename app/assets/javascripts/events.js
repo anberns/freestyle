@@ -1,11 +1,13 @@
 document.addEventListener('DOMContentLoaded', attachEventsListeners); 
 
 class Event {
-  constructor(id, name, distance, stroke) {
+  constructor(id, distance, stroke) {
     this.id = id;
-    this.name = name;
     this.distance = distance;
     this.stroke = stroke;
+  }
+  getName() {
+    return this.distance + " " + this.stroke;
   }
 }
 
