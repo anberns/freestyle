@@ -1,5 +1,14 @@
 document.addEventListener('DOMContentLoaded', attachEventsListeners); 
 
+class Event {
+  constructor(id, name, distance, stroke) {
+    this.id = id;
+    this.name = name;
+    this.distance = distance;
+    this.stroke = stroke;
+  }
+}
+
 function attachEventsListeners() {
   loadEventsNavLink();
 }
