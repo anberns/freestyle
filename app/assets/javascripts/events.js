@@ -1,16 +1,5 @@
 document.addEventListener('DOMContentLoaded', attachEventsListeners); 
 
-class Event {
-  constructor(id, distance, stroke) {
-    this.id = id;
-    this.distance = distance;
-    this.stroke = stroke;
-  }
-  getName() {
-    return this.distance + " " + this.stroke;
-  }
-}
-
 function attachEventsListeners() {
   loadEventsNavLink();
 }
@@ -135,19 +124,13 @@ function deleteEvent(e) {
 }
 
 function updateEvent(e) {
-  let newEvent = Event(
-    document.getElementById("edit-event-distance").value,
-    document.getElementById("edit-event-stroke").value 
-    // id
-  )
-  
-  //let name = document.getElementById("edit-event-name").value
-  //let distance = document.getElementById("edit-event-distance").value
-  //let stroke = document.getElementById("edit-event-stroke").value
+  let name = document.getElementById("edit-event-name").value
+  let distance = document.getElementById("edit-event-distance").value
+  let stroke = document.getElementById("edit-event-stroke").value
   let values = {
-    name: newEvent.getName(),
-    distance: newEvent.distance,
-    stroke: newEvent.stroke
+    name: name,
+    distance: distance,
+    stroke: stroke
   }
   e.preventDefault();
   $.ajax({
