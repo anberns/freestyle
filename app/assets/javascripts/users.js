@@ -58,13 +58,19 @@ function goToTeamPage(e) {
     type: 'GET',
     url: e.target.id, 
     success: (response) => {
-      let newDiv = createNewDiv("team_page");
-      let template = Handlebars.compile(document.getElementById('team-show-template').innerHTML); 
-      let team = template(response.data)
+      let teamObj = new Team(
+        response.data.id,
+        response.data.attributes.name,
+        response.data.attributes.hq,
+        response.data.attributes['image-url']
+      )
+      let newDiv = createNewDiv("team_page")
+      let template = Handlebars.compile(document.getElementById('team-show-template').innerHTML)
+      let team = template(teamObj)
       newDiv.innerHTML += team
       loadTeamShowLinks();
-    }
-  });
+      }
+    });
 }
 
 function updateProfile(e) {
