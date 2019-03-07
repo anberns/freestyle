@@ -53,11 +53,7 @@ function sendUpdate(e) {
     url: e.target.id,
     data: values,
     success: (response) => {
-      let newDiv = createNewDiv("user_profile");
-      let template = Handlebars.compile(document.getElementById('profile-template').innerHTML); 
-      let user = template(response.data)
-      newDiv.innerHTML += user
-      loadUserLinkButtons();
+      _showProfileHelper(response);
     }
   });
 }
@@ -104,19 +100,7 @@ function showProfile(e) {
     type: 'GET',
     url: `/users/1`, //update when sessions are implemented
     success: (response) => {
-      console.log(response)
-      let userObj = new User(
-        response.data.id,
-        response.data.attributes.email,
-        response.data.attributes.name,
-        response.data.attributes.team,
-        response.data.attributes.events
-      )
-      let newDiv = createNewDiv("user_profile");
-      let template = Handlebars.compile(document.getElementById('profile-template').innerHTML); 
-      let user = template(userObj)
-      newDiv.innerHTML += user
-      loadUserLinkButtons();
+      _showProfileHelper(response);
     }
   });
 }
@@ -133,4 +117,19 @@ function showRoster(e) {
       newDiv.innerHTML += users 
     }
   });
+}
+
+function _showProfileHelper(response) {
+  let userObj = new User(
+    response.data.id,
+    response.data.attributes.email,
+    response.data.attributes.name,
+    response.data.attributes.team,
+    response.data.attributes.events
+  )
+  let newDiv = createNewDiv("user_profile");
+  let template = Handlebars.compile(document.getElementById('profile-template').innerHTML); 
+  let user = template(userObj)
+  newDiv.innerHTML += user
+  loadUserLinkButtons();
 }
