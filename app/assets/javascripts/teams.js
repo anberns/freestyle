@@ -68,7 +68,6 @@ function showTeams(e) {
     type: 'GET',
     url: `/teams`,
     success: (response) => {
-      console.log(response.data)
       let teamsArr = [];
       for (let i of response.data) {
         let teamObj = new Team(
@@ -77,10 +76,8 @@ function showTeams(e) {
           i.attributes.hq,
           i.attributes['image-url']
         )
-        console.log(teamObj)
         teamsArr.push(teamObj);
       }
-      console.log(teamsArr)
       let newDiv = createNewDiv("teams_list")
       let template = Handlebars.compile(document.getElementById('teams-index-template').innerHTML)
       let teams = template(teamsArr)

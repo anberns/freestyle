@@ -102,8 +102,8 @@
     <script id="teams-index-template" type="text/x-handlebars-template">
       {{#each this}}
         <div class="team_card" >
-          <h4 id="team-{{ id }}">{{ attributes.name }}</h4>
-          <img src="{{ attributes.image-url }}">
+          <h4 id="team-{{ id }}">{{ name }}</h4>
+          <img src="{{ image_url }}">
           <button class="normal_button" id="teams/{{ id }}">Team Page</>
         </div>
       {{/each}}
