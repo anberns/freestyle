@@ -147,10 +147,11 @@ function updateEvent(e) {
     url: e.target.id,
     data: values,
     success: (response) => {
+      let eventsArr = createEventArray(response);
       registerIfEq();
       let newDiv = createNewDiv("events_list");
       let template = Handlebars.compile(document.getElementById('events-index-template').innerHTML); 
-      let events = template(response.data)
+      let events = template(eventsArr)
       newDiv.innerHTML += events
       loadEventCardLinks(); 
     }
