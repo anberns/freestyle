@@ -46,6 +46,15 @@ function createNewDiv(id) {
   return newDiv;
 }
 
+class Event {
+  constructor(id, name, distance, stroke) {
+    this.id = id;
+    this.name = name,
+    this.distance = distance,
+    this.stroke = stroke
+  }
+}
+
 function addEvent(e) {
   e.preventDefault();
   let addButton = document.getElementsByClassName("normal_button")[0];
