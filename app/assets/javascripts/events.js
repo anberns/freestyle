@@ -177,10 +177,21 @@ function showEvents(e) {
     type: 'GET',
     url: `/events`,
     success: (response) => {
+      console.log(response)
+      let eventsArr = [];
+      for (let i in response.data) {
+        let eventObj = new Event(
+          i.id,
+          i.attributes.name,
+          i.attributes.distance,
+          i.attributes.stroke
+        )
+        eventsArr.push(eventObj);
+      }
       registerIfEq();
       let newDiv = createNewDiv("events_list");
       let template = Handlebars.compile(document.getElementById('events-index-template').innerHTML); 
-      let events = template(response.data)
+      let events = template(eventsArr)
       newDiv.innerHTML += events
       loadEventCardLinks();
     }
