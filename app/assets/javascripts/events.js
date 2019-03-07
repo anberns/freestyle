@@ -104,12 +104,8 @@ function addEvent(e) {
       url: "events",
       data: values,
       success: (response) => {
-        registerIfEq();
-        let newDiv = createNewDiv("events_list");
-        let template = Handlebars.compile(document.getElementById('events-index-template').innerHTML); 
-        let events = template(response.data)
-        newDiv.innerHTML += events
-        loadEventCardLinks(); 
+        let eventsArr = createEventArray(response);
+        _showEventsHelper(eventsArr);  
       }
     }) 
   })
@@ -122,12 +118,8 @@ function deleteEvent(e) {
     type: 'DELETE',
     url: `e${e.target.id}`,
     success: (response) => {
-      registerIfEq();
-      let newDiv = createNewDiv("events_list");
-      let template = Handlebars.compile(document.getElementById('events-index-template').innerHTML); 
-      let events = template(response.data)
-      newDiv.innerHTML += events
-      loadEventCardLinks(); 
+      let eventsArr = createEventArray(response);
+      _showEventsHelper(eventsArr); 
     }
   })
 }
@@ -148,12 +140,7 @@ function updateEvent(e) {
     data: values,
     success: (response) => {
       let eventsArr = createEventArray(response);
-      registerIfEq();
-      let newDiv = createNewDiv("events_list");
-      let template = Handlebars.compile(document.getElementById('events-index-template').innerHTML); 
-      let events = template(eventsArr)
-      newDiv.innerHTML += events
-      loadEventCardLinks(); 
+      _showEventsHelper(eventsArr);
     }
   })
 }
@@ -179,15 +166,18 @@ function showEvents(e) {
     url: `/events`,
     success: (response) => {
       let eventsArr = createEventArray(response);
-      registerIfEq();
-      let newDiv = createNewDiv("events_list");
-      let template = Handlebars.compile(document.getElementById('events-index-template').innerHTML); 
-      let events = template(eventsArr)
-      newDiv.innerHTML += events
-      loadEventCardLinks();
+      _showEventsHelper(eventsArr);
     }
   });
+}
 
+function _showEventsHelper(eventsArr) {
+  registerIfEq();
+  let newDiv = createNewDiv("events_list");
+  let template = Handlebars.compile(document.getElementById('events-index-template').innerHTML); 
+  let events = template(eventsArr)
+  newDiv.innerHTML += events
+  loadEventCardLinks(); 
 }
 
 function createEventArray(response) {
