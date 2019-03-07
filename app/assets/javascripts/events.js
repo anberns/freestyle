@@ -52,8 +52,11 @@ class Event {
     this.distance = distance,
     this.stroke = stroke
   }
+  strokeToTitle() {
+    return this.stroke.charAt(0).toUpperCase() + this.stroke.slice(1);
+  }
   getName() {
-    return this.distance + " " + this.stroke;
+    return this.distance + " " + this.strokeToTitle();
   }
 }
 
