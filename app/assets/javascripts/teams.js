@@ -32,12 +32,28 @@ function loadTeamShowLinks() {
   //addButton.addEventListener("click", (e) => { addMember(e) }) 
 }
 
+class Team {
+  constructor(id, name, hq, image_url) {
+    this.id = id;
+    this.name = name;
+    this.hq = hq;
+    this.image_url = image_url;
+  }
+}
+
 function showTeam(e) {
   e.preventDefault();
   $.ajax({
     type: 'GET',
     url: e.target.id,
     success: (response) => {
+      console.log(response)
+      let newTeam = Team(
+        response.data.id,
+        response.data.attributes.name,
+        response.data.attributes.hq,
+        response.data.attributes.image-url
+      )
       let newDiv = createNewDiv("team_page")
       let template = Handlebars.compile(document.getElementById('team-show-template').innerHTML)
       let team = template(response.data)
