@@ -53,6 +53,9 @@ class Event {
     this.distance = distance,
     this.stroke = stroke
   }
+  getName() {
+    return this.distance + " " + this.stroke;
+  }
 }
 
 function addEvent(e) {
@@ -157,7 +160,11 @@ function editEvent(e) {
       )
       let newDiv = createNewDiv("event_edit_form");
       let template = Handlebars.compile(document.getElementById('event-edit-template').innerHTML); 
-      let event = template(eventObj)
+      let loadedEvent = {
+        event: eventObj,
+        name: eventObj.getName()
+      }
+      let event = template(loadedEvent)
       newDiv.innerHTML += event
       loadEventUpdateButton();
     }

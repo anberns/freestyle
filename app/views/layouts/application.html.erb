@@ -92,10 +92,10 @@
         Name: 
         <br><input type="text" id="edit-event-name" value="{{ name }}"><br><br>
         Distance: 
-        <br><input type="text" id="edit-event-distance" value="{{ distance }}"><br><br> 
+        <br><input type="text" id="edit-event-distance" value="{{ event.distance }}"><br><br> 
         Stroke: 
-        <br><input type="text" id="edit-event-stroke" value="{{ stroke}}"><br><br>
-        <input type="submit" class="normal_button" value="Update" id="events/{{ id }}">
+        <br><input type="text" id="edit-event-stroke" value="{{ event.stroke}}"><br><br>
+        <input type="submit" class="normal_button" value="Update" id="events/{{ event.id }}">
       </form>
     </script>
 
