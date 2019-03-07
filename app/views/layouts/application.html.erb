@@ -64,14 +64,14 @@
     </script>
 
     <script id="profile-template" type="text/x-handlebars-template"> 
-      <h1>{{ attributes.name }}</h1>
-      <h3>{{ attributes.team.name }}</h3><br>
+      <h1>{{ name }}</h1>
+      <h3>{{ team.name }}</h3><br>
       <h5>Events</h5>
-      {{#each attributes.events}}
+      {{#each events}}
       <p>{{ this.distance }} {{ this.stroke }}</p>
       {{/each}}
       <button class="edit_button" id="users/{{ id }}/edit">Update Profile</button>
-      <button class="normal_button" id="teams/{{ attributes.team.id }}">Team Page</button>
+      <button class="normal_button" id="teams/{{ team.id }}">Team Page</button>
     </script>
 
     <script id="update-user-template" type="text/x-handlebars-template"> 

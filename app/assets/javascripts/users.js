@@ -105,9 +105,16 @@ function showProfile(e) {
     url: `/users/1`, //update when sessions are implemented
     success: (response) => {
       console.log(response)
+      let userObj = new User(
+        response.data.id,
+        response.data.attributes.email,
+        response.data.attributes.name,
+        response.data.attributes.team,
+        response.data.attributes.events
+      )
       let newDiv = createNewDiv("user_profile");
       let template = Handlebars.compile(document.getElementById('profile-template').innerHTML); 
-      let user = template(response.data)
+      let user = template(userObj)
       newDiv.innerHTML += user
       loadUserLinkButtons();
     }
