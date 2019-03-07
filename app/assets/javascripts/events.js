@@ -109,7 +109,6 @@ function addEvent(e) {
       }
     }) 
   })
-
 }
 
 function deleteEvent(e) {
@@ -150,9 +149,15 @@ function editEvent(e) {
     type: 'GET',
     url: e.target.id,
     success: (response) => {
+      let eventObj = new Event(
+        response.data.id,
+        response.data.attributes.name,
+        response.data.attributes.distance,
+        response.data.attributes.stroke
+      )
       let newDiv = createNewDiv("event_edit_form");
       let template = Handlebars.compile(document.getElementById('event-edit-template').innerHTML); 
-      let event = template(response.data)
+      let event = template(eventObj)
       newDiv.innerHTML += event
       loadEventUpdateButton();
     }
