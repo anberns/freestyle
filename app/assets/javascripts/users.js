@@ -28,6 +28,16 @@ function loadUserUpdateButton() {
   updateButton.addEventListener("click", (e) => { sendUpdate(e) })
 }
 
+class User {
+  constructor(id, email, name, team, events) {
+    this.id = id;
+    this.email = email;
+    this.name = name;
+    this.team = team;
+    this.events = events;
+  }
+}
+
 function sendUpdate(e) {
   e.preventDefault();
   let name = document.getElementById("updatedName").value
@@ -94,6 +104,7 @@ function showProfile(e) {
     type: 'GET',
     url: `/users/1`, //update when sessions are implemented
     success: (response) => {
+      console.log(response)
       let newDiv = createNewDiv("user_profile");
       let template = Handlebars.compile(document.getElementById('profile-template').innerHTML); 
       let user = template(response.data)
