@@ -47,9 +47,8 @@ function createNewDiv(id) {
 }
 
 class Event {
-  constructor(id, name, distance, stroke) {
+  constructor(id, distance, stroke) {
     this.id = id;
-    this.name = name,
     this.distance = distance,
     this.stroke = stroke
   }
@@ -70,16 +69,9 @@ function addEvent(e) {
   let newInput = document.createElement('input')
   let newBr = document.createElement('br')
   newInput.type = "text";
-  newInput.value = "Event Name"
-  newInput.id = "newName";
-  newForm.appendChild(newInput);
-  newForm.appendChild(newBr)
-  newInput = document.createElement('input')
-  newInput.type = "text";
   newInput.value = "Distance"
   newInput.id = "newDistance";
   newForm.appendChild(newInput);
-  newBr = document.createElement('br')
   newForm.appendChild(newBr)
   newInput = document.createElement('input')
   newInput.type = "text";
@@ -94,11 +86,9 @@ function addEvent(e) {
   newForm.appendChild(newButton);
   newButton.addEventListener("click", (e) => {
     e.preventDefault();
-    let name = document.getElementById("newName").value
     let distance = document.getElementById("newDistance").value
     let stroke = document.getElementById("newStroke").value
     let values = {
-      name: name,
       distance: distance,
       stroke: stroke
     }
@@ -127,11 +117,9 @@ function deleteEvent(e) {
 }
 
 function updateEvent(e) {
-  let name = document.getElementById("edit-event-name").value
   let distance = document.getElementById("edit-event-distance").value
   let stroke = document.getElementById("edit-event-stroke").value
   let values = {
-    name: name,
     distance: distance,
     stroke: stroke
   }
@@ -154,7 +142,6 @@ function editEvent(e) {
     success: (response) => {
       let eventObj = new Event(
         response.data.id,
-        response.data.attributes.name,
         response.data.attributes.distance,
         response.data.attributes.stroke
       )
@@ -197,7 +184,6 @@ function createEventArray(response) {
   for (let i of response.data) {
     let eventObj = new Event(
       i.id,
-      i.attributes.name,
       i.attributes.distance,
       i.attributes.stroke
     )
