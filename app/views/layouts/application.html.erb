@@ -80,6 +80,10 @@
         <br><input type="text" id="updatedName" value="{{ name }}"><br><br>
         Email: 
         <br><input type="text" id="updatedEmail" value="{{ email }}"><br><br> 
+        Events:
+        {{#each events}}
+        <br><input type="checkbox" id="" value="{{ this.id }}">{{ this.distance }} {{ this.stroke }}</><br>
+        {{/each}}
         <input type="submit" class="normal_button" value="Update" id="users/{{ id }}">
       </form>
     </script>

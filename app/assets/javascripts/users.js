@@ -90,11 +90,23 @@ function updateProfile(e) {
         response.data.attributes.team,
         response.data.attributes.events
       )
-      let newDiv = createNewDiv("update_user_page");
-      let template = Handlebars.compile(document.getElementById('update-user-template').innerHTML); 
-      let user = template(userObj)
-      newDiv.innerHTML += user 
-      loadUserUpdateButton();
+      $.ajax({
+        type: 'GET',
+        url: 'events',
+        success: (response) => {
+          let events = createEventArray(response);
+          let newDiv = createNewDiv("update_user_page");
+          let template = Handlebars.compile(document.getElementById('update-user-template').innerHTML); 
+          let pageData = {
+            user: userObj,
+            events: events
+          }
+          let user = template(pageData)
+          newDiv.innerHTML += user 
+          loadUserUpdateButton();
+        }
+      })
+    
     }
   });
 }
