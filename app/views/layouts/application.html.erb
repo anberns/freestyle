@@ -82,9 +82,9 @@
         <br><input type="text" id="updatedEmail" value="{{ user.email }}"><br><br> 
         Events:
         {{#each events}}
-        <br><input type="checkbox" id="" value="{{ this.id }}">{{ this.name }}</><br>
+        <br><input type="checkbox" name="user[event_ids][{{@index}}]" class="eventCheckbox" value="{{ id }}">{{ this.name }}</>
         {{/each}}
-        <input type="submit" class="normal_button" value="Update" id="users/{{ user.id }}">
+        <br><input type="submit" class="normal_button" value="Update" id="users/{{ user.id }}">
       </form>
     </script>
 

@@ -42,10 +42,19 @@ function sendUpdate(e) {
   e.preventDefault();
   let name = document.getElementById("updatedName").value
   let email = document.getElementById("updatedEmail").value
+  let events = Array.from(document.getElementsByClassName("eventCheckbox"));
+  let eventsArr = [];
+  events.forEach( (event) => {
+    if (event.checked) {
+      eventsArr.push(event.value)
+    }
+  })
   let values = {
     name: name,
-    email: email
+    email: email,
+    event_ids: eventsArr
   }
+  
   $.ajax({
     type: 'PATCH',
     url: e.target.id,
@@ -94,7 +103,15 @@ function updateProfile(e) {
         type: 'GET',
         url: 'events',
         success: (response) => {
-          let events = createEventArray(response);
+          let events= [];
+          for (let i of response.data) {
+            let name = i.attributes.distance.toString() + " " + i.attributes.stroke
+            let eventObj = {
+              id: i.id,
+              name: name
+            }
+            events.push(eventObj)
+          }
           let newDiv = createNewDiv("update_user_page");
           let template = Handlebars.compile(document.getElementById('update-user-template').innerHTML); 
           let pageData = {
@@ -102,7 +119,6 @@ function updateProfile(e) {
             events: events
           }
           let user = template(pageData)
-          console.log(pageData)
           newDiv.innerHTML += user 
           loadUserUpdateButton();
         }
