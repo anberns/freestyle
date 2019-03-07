@@ -93,7 +93,7 @@ function addEvent(e) {
     let stroke = document.getElementById("newStroke").value
     let values = {
       distance: distance,
-      stroke: stroke
+      stroke: stroke.toLowerCase()
     }
     $.ajax({
       type: 'post',
@@ -124,7 +124,7 @@ function updateEvent(e) {
   let stroke = document.getElementById("edit-event-stroke").value
   let values = {
     distance: distance,
-    stroke: stroke
+    stroke: stroke.toLowerCase()
   }
   e.preventDefault();
   $.ajax({
