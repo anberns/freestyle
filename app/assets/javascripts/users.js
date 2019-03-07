@@ -102,6 +102,7 @@ function updateProfile(e) {
             events: events
           }
           let user = template(pageData)
+          console.log(pageData)
           newDiv.innerHTML += user 
           loadUserUpdateButton();
         }

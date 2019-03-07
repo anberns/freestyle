@@ -77,14 +77,14 @@
     <script id="update-user-template" type="text/x-handlebars-template"> 
       <form> 
         Name: 
-        <br><input type="text" id="updatedName" value="{{ name }}"><br><br>
+        <br><input type="text" id="updatedName" value="{{ user.name }}"><br><br>
         Email: 
-        <br><input type="text" id="updatedEmail" value="{{ email }}"><br><br> 
+        <br><input type="text" id="updatedEmail" value="{{ user.email }}"><br><br> 
         Events:
         {{#each events}}
-        <br><input type="checkbox" id="" value="{{ this.id }}">{{ this.distance }} {{ this.stroke }}</><br>
+        <br><input type="checkbox" id="" value="{{ this.id }}">{{ this.name }}</><br>
         {{/each}}
-        <input type="submit" class="normal_button" value="Update" id="users/{{ id }}">
+        <input type="submit" class="normal_button" value="Update" id="users/{{ user.id }}">
       </form>
     </script>
 
