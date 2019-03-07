@@ -90,11 +90,11 @@
     <script id="event-edit-template" type="text/x-handlebars-template"> 
       <form> 
         Name: 
-        <br><input type="text" id="edit-event-name" value="{{ attributes.name }}"><br><br>
+        <br><input type="text" id="edit-event-name" value="{{ name }}"><br><br>
         Distance: 
-        <br><input type="text" id="edit-event-distance" value="{{ attributes.distance }}"><br><br> 
+        <br><input type="text" id="edit-event-distance" value="{{ distance }}"><br><br> 
         Stroke: 
-        <br><input type="text" id="edit-event-stroke" value="{{ attributes.stroke}}"><br><br>
+        <br><input type="text" id="edit-event-stroke" value="{{ stroke}}"><br><br>
         <input type="submit" class="normal_button" value="Update" id="events/{{ id }}">
       </form>
     </script>
