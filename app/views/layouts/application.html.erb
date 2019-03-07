@@ -68,7 +68,7 @@
       <h3>{{ attributes.team.name }}</h3><br>
       <h5>Events</h5>
       {{#each attributes.events}}
-      <p>{{ this.name }}</p>
+      <p>{{ this.distance }} {{ this.stroke }}</p>
       {{/each}}
       <button class="edit_button" id="users/{{ id }}/edit">Update Profile</button>
       <button class="normal_button" id="teams/{{ attributes.team.id }}">Team Page</button>
