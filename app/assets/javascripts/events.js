@@ -182,11 +182,15 @@ function _showEventsHelper(eventsArr) {
 function createEventArray(response) {
   let eventsArr = [];
   for (let i of response.data) {
-    let eventObj = new Event(
+    let event = new Event(
       i.id,
       i.attributes.distance,
       i.attributes.stroke
     )
+    let eventObj = {
+      event: event,
+      name: event.getName()
+    }
     eventsArr.push(eventObj);
   } 
   return eventsArr;

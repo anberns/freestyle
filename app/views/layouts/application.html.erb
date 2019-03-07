@@ -43,21 +43,21 @@
     <script id="events-index-template" type="text/x-handlebars-template">
       {{#each this}}
         <div class="event_card">
-        <p style="font-size: 1.3em" id="event-{{ id }}">{{ name }}</p>
-        {{#if_eq stroke "freestyle"}}
+        <p style="font-size: 1.3em" id="event-{{ event.id }}">{{ name }}</p>
+        {{#if_eq event.stroke "freestyle"}}
           <img src="https://i.imgur.com/vKE57Vm.jpg">
         {{/if_eq}}
-        {{#if_eq stroke "breaststroke"}}
+        {{#if_eq event.stroke "breaststroke"}}
           <img src="https://i.imgur.com/JR51SU3.jpg">
         {{/if_eq}}
-        {{#if_eq stroke  "backstroke"}}
+        {{#if_eq event.stroke  "backstroke"}}
           <img src="https://i.imgur.com/VBbdzdP.jpg">
         {{/if_eq}}
-        {{#if_eq stroke "butterfly"}}
+        {{#if_eq event.stroke "butterfly"}}
           <img src="https://i.imgur.com/CKgE6Le.jpg">
         {{/if_eq}}
-        <button class="edit_button" id="events/{{ id }}/edit">Edit</>
-        <button class="delete_button" id="vents/{{ id }}">Delete</><br>
+        <button class="edit_button" id="events/{{ event.id }}/edit">Edit</>
+        <button class="delete_button" id="vents/{{ event.id }}">Delete</><br>
         </div>
       {{/each}}
       <br><button class="normal_button" id="events/new">Add Event</button>
@@ -88,9 +88,8 @@
 
    
     <script id="event-edit-template" type="text/x-handlebars-template"> 
+      <h2>{{ name }}</h2>
       <form> 
-        Name: 
-        <br><input type="text" id="edit-event-name" value="{{ name }}"><br><br>
         Distance: 
         <br><input type="text" id="edit-event-distance" value="{{ event.distance }}"><br><br> 
         Stroke: 
