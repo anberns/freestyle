@@ -42,11 +42,9 @@ function sendUpdate(e) {
   e.preventDefault();
   let name = document.getElementById("updatedName").value
   let email = document.getElementById("updatedEmail").value
-  let password = document.getElementById("updatedPassword").value
   let values = {
     name: name,
-    email: email,
-    password: password 
+    email: email
   }
   $.ajax({
     type: 'PATCH',
@@ -85,9 +83,16 @@ function updateProfile(e) {
     type: 'GET',
     url: e.target.id, 
     success: (response) => {
+      let userObj = new User(
+        response.data.id,
+        response.data.attributes.email,
+        response.data.attributes.name,
+        response.data.attributes.team,
+        response.data.attributes.events
+      )
       let newDiv = createNewDiv("update_user_page");
       let template = Handlebars.compile(document.getElementById('update-user-template').innerHTML); 
-      let user = template(response.data)
+      let user = template(userObj)
       newDiv.innerHTML += user 
       loadUserUpdateButton();
     }
