@@ -48,15 +48,15 @@ function showTeam(e) {
     url: e.target.id,
     success: (response) => {
       console.log(response)
-      let newTeam = Team(
+      let teamObj = new Team(
         response.data.id,
         response.data.attributes.name,
         response.data.attributes.hq,
-        response.data.attributes.image-url
+        response.data.attributes['image-url']
       )
       let newDiv = createNewDiv("team_page")
       let template = Handlebars.compile(document.getElementById('team-show-template').innerHTML)
-      let team = template(response.data)
+      let team = template(teamObj)
       newDiv.innerHTML += team
       loadTeamShowLinks();
       }
