@@ -13,7 +13,6 @@
 ActiveRecord::Schema.define(version: 2019_03_04_134319) do
 
   create_table "events", force: :cascade do |t|
-    t.string "name"
     t.integer "distance"
     t.string "stroke"
     t.datetime "created_at", null: false
