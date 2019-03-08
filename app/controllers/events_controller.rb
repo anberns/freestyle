@@ -19,13 +19,13 @@ class EventsController < ApplicationController
   def update
     event = Event.find(params[:id])
     event.update(event_params)
-    events = Event.all
+    events = Event.sort
     render json: events
   end
 
   def destroy
     Event.find(params[:id]).destroy 
-    events = Event.all
+    events = Event.sort
     render json: events
   end
 
