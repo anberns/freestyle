@@ -1,14 +1,17 @@
 document.addEventListener('DOMContentLoaded', attachEventsListeners); 
 
+// attach initial listeners
 function attachEventsListeners() {
   loadEventsNavLink();
 }
 
+// add listener to Event nav tab
 function loadEventsNavLink() {
   let eventsLink = document.getElementById('events_link');
   eventsLink.addEventListener("click", (e) => { showEvents(e) })
 }
 
+// add listeners to Event cards
 function loadEventCardLinks() {
   let editButtons = document.getElementsByClassName("edit_button");
   for (let b of editButtons) {
@@ -22,11 +25,14 @@ function loadEventCardLinks() {
   addButton.addEventListener("click", (e) => { addEvent(e) }) 
 }
 
+// add listener to Event update button
 function loadEventUpdateButton() {
   let updateButton = document.getElementsByClassName("normal_button")[0]
   updateButton.addEventListener("click", (e) => { updateEvent(e) })
 }
 
+// Handlebars comparison helper
+// Help from https://code-maven.com/handlebars-conditionals
 function registerIfEq() {
   Handlebars.registerHelper('if_eq', function(a, b, opts) {
     if (a == b) {
@@ -37,15 +43,7 @@ function registerIfEq() {
   }); 
 }
 
-function createNewDiv(id) {
-  let contentDiv = document.getElementById('main_content')
-  contentDiv.innerHTML = "";
-  let newDiv = document.createElement('div');
-  newDiv.id = id; 
-  contentDiv.appendChild(newDiv)
-  return newDiv;
-}
-
+// Event JS class with methods
 class Event {
   constructor(id, distance, stroke) {
     this.id = id;
@@ -60,6 +58,7 @@ class Event {
   }
 }
 
+// Build form to add event
 function addEvent(e) {
   e.preventDefault();
   let addButton = document.getElementsByClassName("normal_button")[0];
@@ -107,6 +106,7 @@ function addEvent(e) {
   })
 }
 
+// Delete Event Ajax call
 function deleteEvent(e) {
   e.preventDefault();
   $.ajax({
@@ -119,6 +119,7 @@ function deleteEvent(e) {
   })
 }
 
+// Update Event Ajax call
 function updateEvent(e) {
   let distance = document.getElementById("edit-event-distance").value
   let stroke = document.getElementById("edit-event-stroke").value
@@ -138,6 +139,7 @@ function updateEvent(e) {
   })
 }
 
+// Edit Event Ajax call
 function editEvent(e) {
   $.ajax({
     type: 'GET',
@@ -161,6 +163,7 @@ function editEvent(e) {
   })
 }
 
+// Events Index Ajax call
 function showEvents(e) {
   e.preventDefault();
   $.ajax({
@@ -173,6 +176,17 @@ function showEvents(e) {
   });
 }
 
+// Helper to clear page content and reload
+function createNewDiv(id) {
+  let contentDiv = document.getElementById('main_content')
+  contentDiv.innerHTML = "";
+  let newDiv = document.createElement('div');
+  newDiv.id = id; 
+  contentDiv.appendChild(newDiv)
+  return newDiv;
+}
+
+// Helper function to build and fill Events index template
 function _showEventsHelper(eventsArr) {
   registerIfEq();
   let newDiv = createNewDiv("events_list");
@@ -182,6 +196,7 @@ function _showEventsHelper(eventsArr) {
   loadEventCardLinks(); 
 }
 
+// Helper function to fill Event Object events member
 function createEventArray(response) {
   let eventsArr = [];
   for (let i of response.data) {
