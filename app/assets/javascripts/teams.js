@@ -1,14 +1,5 @@
 document.addEventListener('DOMContentLoaded', attachTeamsListeners); 
 
-function createNewDiv(id) {
-  let contentDiv = document.getElementById('main_content')
-  contentDiv.innerHTML = "";
-  let newDiv = document.createElement('div');
-  newDiv.id = id; 
-  contentDiv.appendChild(newDiv)
-  return newDiv;
-}
-
 function attachTeamsListeners() {
   loadTeamsLink();
 }
