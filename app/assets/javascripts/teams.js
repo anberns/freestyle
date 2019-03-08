@@ -19,7 +19,7 @@ function loadTeamsLink() {
 }
 
 function loadTeamCardLinks() {
-  cards = document.getElementsByClassName("normal_button");
+  cards = document.getElementsByClassName("img_link");
   for (let i of cards) {
     i.addEventListener("click", (e) => { showTeam(e) });
   }
@@ -47,6 +47,7 @@ function showTeam(e) {
     type: 'GET',
     url: e.target.id,
     success: (response) => {
+      console.log(response)
       let teamObj = new Team(
         response.data.id,
         response.data.attributes.name,
