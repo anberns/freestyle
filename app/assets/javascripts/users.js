@@ -1,14 +1,17 @@
 document.addEventListener('DOMContentLoaded', attachEventsListeners); 
 
+// Attach initial listener
 function attachEventsListeners() {
   loadProfileNavLink();
 }
 
+// Attach listener to Profile nav link
 function loadProfileNavLink() {
   let profileLink = document.getElementById('profile_link');
   profileLink.addEventListener("click", (e) => { showProfile(e) })
 }
 
+// Attach listeners to User show page buttons
 function loadUserLinkButtons() {
   let teamButton = document.getElementsByClassName("normal_button")[0]
   teamButton.addEventListener("click", (e) => { goToTeamPage(e) })
@@ -16,18 +19,19 @@ function loadUserLinkButtons() {
   updateButton.addEventListener("click", (e) => { updateProfile(e) })
 }
 
+// Attach listener to User / Team link
 function loadTeamShowLinks() {
   let rosterButton = document.getElementsByClassName("normal_button")[0];
   rosterButton.addEventListener("click", (e) => { showRoster(e) }) 
-  //let addButton = document.getElementsByClassName("normal_button")[1];
-  //addButton.addEventListener("click", (e) => { addMember(e) }) 
 }
 
+// Attach listener to User Update button on edit page
 function loadUserUpdateButton() {
   let updateButton = document.getElementsByClassName('normal_button')[0];
   updateButton.addEventListener("click", (e) => { sendUpdate(e) })
 }
 
+// User JS class definition
 class User {
   constructor(id, email, name, team, events) {
     this.id = id;
@@ -38,6 +42,7 @@ class User {
   }
 }
 
+// User update Ajax call
 function sendUpdate(e) {
   e.preventDefault();
   let name = document.getElementById("updatedName").value
@@ -65,6 +70,7 @@ function sendUpdate(e) {
   });
 }
 
+// User's Team's show Ajax call
 function goToTeamPage(e) {
   e.preventDefault();
   $.ajax({
@@ -86,6 +92,7 @@ function goToTeamPage(e) {
     });
 }
 
+// User edit Ajax call
 function updateProfile(e) {
   e.preventDefault();
   $.ajax({
@@ -99,6 +106,7 @@ function updateProfile(e) {
         response.data.attributes.team,
         response.data.attributes.events
       )
+      // nested call to get all events for checkboxes
       $.ajax({
         type: 'GET',
         url: 'events',
@@ -128,6 +136,7 @@ function updateProfile(e) {
   });
 }
 
+// User show Ajax call
 function showProfile(e) {
   e.preventDefault();
   $.ajax({
@@ -139,6 +148,7 @@ function showProfile(e) {
   });
 }
 
+// User's Team's Users nested route Ajax call
 function showRoster(e) {
   e.preventDefault();
   $.ajax({
@@ -153,6 +163,7 @@ function showRoster(e) {
   });
 }
 
+// Helper to create User object and feed to user profile template
 function _showProfileHelper(response) {
   let userObj = new User(
     response.data.id,
