@@ -1,14 +1,17 @@
 document.addEventListener('DOMContentLoaded', attachTeamsListeners); 
 
+// Attach initial listeners
 function attachTeamsListeners() {
   loadTeamsLink();
 }
 
+// Add listener to Team nav link
 function loadTeamsLink() {
   let teamsLink = document.getElementById('teams_link');
   teamsLink.addEventListener("click", (e) => { showTeams(e) })
 }
 
+// Add listeners to Team index cards
 function loadTeamCardLinks() {
   cards = document.getElementsByClassName("img_link");
   for (let i of cards) {
@@ -16,13 +19,13 @@ function loadTeamCardLinks() {
   }
 }
 
+// Add listener to Team show card button
 function loadTeamShowLinks() {
   let rosterButton = document.getElementsByClassName("normal_button")[0];
   rosterButton.addEventListener("click", (e) => { showRoster(e) }) 
-  //let addButton = document.getElementsByClassName("normal_button")[1];
-  //addButton.addEventListener("click", (e) => { addMember(e) }) 
 }
 
+// Team JS class definition
 class Team {
   constructor(id, name, hq, image_url) {
     this.id = id;
@@ -32,13 +35,13 @@ class Team {
   }
 }
 
+// Team show Ajax call
 function showTeam(e) {
   e.preventDefault();
   $.ajax({
     type: 'GET',
     url: e.target.id,
     success: (response) => {
-      console.log(response)
       let teamObj = new Team(
         response.data.id,
         response.data.attributes.name,
@@ -54,6 +57,7 @@ function showTeam(e) {
     });
 }
 
+// Team index Ajax call
 function showTeams(e) {
   e.preventDefault();
   $.ajax({
@@ -79,6 +83,7 @@ function showTeams(e) {
   });
 }
 
+// Team has many Users nested route Ajax call
 function showRoster(e) {
   e.preventDefault();
   $.ajax({
